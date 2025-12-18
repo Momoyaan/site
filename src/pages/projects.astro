@@ -1,0 +1,89 @@
+---
+import Layout from "../layouts/Layout.astro";
+import universImage from "../assets/univers.png";
+import nixosImage from "../assets/nixos.png";
+---
+
+<Layout title="Projects - imaviso" preloadImage={universImage.src}>
+  <div class="w-[1000px] max-lg:w-full h-screen flex flex-col border-x border-[var(--color-border)] max-lg:border-x-0 relative overflow-hidden">
+    <nav class="border-b border-[var(--color-border)] py-6 shrink-0 bg-black z-[100]">
+      <div class="max-w-full mx-auto px-8 flex justify-between items-center">
+        <a href="/" class="font-[var(--font-mono)] text-xl font-normal tracking-wider text-[var(--color-fg)] no-underline hover:opacity-70 transition-opacity duration-200">imaviso</a>
+        <div class="flex gap-8 items-center max-md:gap-4 max-md:flex-wrap max-md:text-[0.85rem] max-[480px]:flex-col max-[480px]:gap-3">
+          <a href="/projects" class="text-[var(--color-fg)] no-underline text-[0.95rem] transition-opacity duration-200 flex items-center gap-2 opacity-100 border-b border-[var(--color-fg)]">Projects</a>
+          <a href="https://github.com/imaviso" target="_blank" class="text-[var(--color-fg)] no-underline text-[0.95rem] transition-opacity duration-200 flex items-center gap-2 hover:opacity-70">GitHub</a>
+        </div>
+      </div>
+    </nav>
+
+    <main class="flex-1 flex items-start justify-center py-12 px-8 border-b border-[var(--color-border)] overflow-y-auto min-h-0 custom-scrollbar max-md:py-8 max-md:px-4">
+      <div class="w-full">
+        
+        <h1 class="font-[var(--font-mono)] text-[2.5rem] font-normal leading-[1.2] mb-8 text-[var(--color-fg)] tracking-[-0.02em] max-md:text-[1.75rem] max-[480px]:text-2xl">Projects</h1>
+        
+        <div class="space-y-8">
+          <!-- UniVERS Project -->
+          <div class="border border-[var(--color-border)] p-6 transition-all duration-200 hover:border-[var(--color-fg)]">
+            <div class="mb-4">
+              <img src={universImage.src} alt="UniVERS Project" class="w-full h-auto border border-[var(--color-border)]" />
+            </div>
+            <h2 class="font-[var(--font-mono)] text-xl font-normal mb-2 text-[var(--color-fg)]">
+              UniVERS
+            </h2>
+            <p class="text-[0.9rem] text-[#999999] mb-4 leading-[1.6] font-[var(--font-mono)]">
+             is a centralized, automated event reservation system with an integrated approval workflow. It enables seamless venue and equipment reservations with real-time availability tracking, approval hierarchies, and automated notifications.
+            </p>
+            <div class="flex gap-4 flex-wrap">
+              <span class="text-[0.75rem] text-[#666666] font-[var(--font-mono)] px-2 py-1 border border-[var(--color-border)]">Typescript</span>
+              <span class="text-[0.75rem] text-[#666666] font-[var(--font-mono)] px-2 py-1 border border-[var(--color-border)]">React</span>
+              <span class="text-[0.75rem] text-[#666666] font-[var(--font-mono)] px-2 py-1 border border-[var(--color-border)]">Java</span>
+              <span class="text-[0.75rem] text-[#666666] font-[var(--font-mono)] px-2 py-1 border border-[var(--color-border)]">Spring Boot</span>
+            </div>
+          </div>
+
+          <!-- NixOS Project -->
+          <div class="border border-[var(--color-border)] p-6 transition-all duration-200 hover:border-[var(--color-fg)]">
+            <div class="mb-4">
+              <img src={nixosImage.src} alt="NixOS Configuration" class="w-full h-auto border border-[var(--color-border)]" />
+            </div>
+            <h2 class="font-[var(--font-mono)] text-xl font-normal mb-2 text-[var(--color-fg)]">
+              NixOS
+            </h2>
+            <p class="text-[0.9rem] text-[#999999] mb-4 leading-[1.6] font-[var(--font-mono)]">
+            is a NixOS configuration using Flakes and Home-Manager for reproducible system setup. It includes wayland desktop configuration featuring the Niri scrollable-tiling compositor, quickshell for desktop shell, minimalist dark theming, cool fonts (Geist, Berkeley Mono), and Neovim + modern terminals (Foot/Ghostty) for a keyboard-driven developer workflow.
+            </p>
+            <div class="flex gap-4 flex-wrap">
+              <span class="text-[0.75rem] text-[#666666] font-[var(--font-mono)] px-2 py-1 border border-[var(--color-border)]">NixOS</span>
+              <span class="text-[0.75rem] text-[#666666] font-[var(--font-mono)] px-2 py-1 border border-[var(--color-border)]">Nix</span>
+              <span class="text-[0.75rem] text-[#666666] font-[var(--font-mono)] px-2 py-1 border border-[var(--color-border)]">Linux</span>
+              <span class="text-[0.75rem] text-[#666666] font-[var(--font-mono)] px-2 py-1 border border-[var(--color-border)]">Neovim</span>
+              <span class="text-[0.75rem] text-[#666666] font-[var(--font-mono)] px-2 py-1 border border-[var(--color-border)]">Niri</span>
+              <span class="text-[0.75rem] text-[#666666] font-[var(--font-mono)] px-2 py-1 border border-[var(--color-border)]">Quickshell</span>
+            </div>
+          </div>
+
+          <!-- Add more project cards here -->
+          <!-- <div class="border border-[var(--color-border)] p-6 transition-all duration-200 hover:border-[var(--color-fg)]"> -->
+          <!--   <h2 class="font-[var(--font-mono)] text-xl font-normal mb-2 text-[var(--color-fg)]"> -->
+          <!--     <a href="#" class="hover:opacity-70 transition-opacity duration-200">Another Project</a> -->
+          <!--   </h2> -->
+          <!--   <p class="text-[0.9rem] text-[#999999] mb-4 leading-[1.6] font-[var(--font-mono)]"> -->
+          <!--     Description of another project you've worked on. Keep it concise but informative. -->
+          <!--   </p> -->
+          <!--   <div class="flex gap-4 flex-wrap"> -->
+          <!--     <span class="text-[0.75rem] text-[#666666] font-[var(--font-mono)] px-2 py-1 border border-[var(--color-border)]">NixOS</span> -->
+          <!--     <span class="text-[0.75rem] text-[#666666] font-[var(--font-mono)] px-2 py-1 border border-[var(--color-border)]">Linux</span> -->
+          <!--   </div> -->
+          <!-- </div> -->
+
+        </div>
+
+      </div>
+    </main>
+
+    <footer class="p-4 text-center shrink-0">
+      <div class="font-[var(--font-mono)] text-[11px] font-normal tracking-wider text-[var(--color-fg)]">Copyright©️ 2025</div>
+    </footer>
+  </div>
+
+</Layout>
