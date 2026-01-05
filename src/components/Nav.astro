@@ -1,0 +1,149 @@
+---
+import ThemeToggle from "./ThemeToggle.astro";
+
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = "" } = Astro.props;
+
+const navLinks = [
+  { href: "/projects", label: "Projects" },
+  { href: "/contact", label: "Contact" },
+  { href: "https://github.com/imaviso", label: "GitHub", external: true },
+];
+---
+
+<nav class="border-b border-[var(--color-border)] py-4 md:py-6 shrink-0 bg-[var(--color-bg)] z-[100] transition-colors duration-300">
+  <div class="max-w-full mx-auto px-4 md:px-8 flex justify-between items-center">
+    <!-- Logo -->
+    <a 
+      href="/" 
+      class="font-[var(--font-mono)] text-lg md:text-xl font-normal tracking-wider text-[var(--color-fg)] no-underline hover:opacity-70 transition-all duration-200 flex items-center gap-1 md:gap-2"
+    >
+      <span class="text-[var(--color-muted)]">&gt;</span>
+      <span>imaviso</span>
+      <span class="cursor-blink text-[var(--color-accent)]">_</span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <div class="hidden md:flex gap-8 items-center">
+      {navLinks.map((link) => {
+        const isActive = currentPath === link.href;
+        return (
+          <a 
+            href={link.href} 
+            target={link.external ? "_blank" : undefined}
+            rel={link.external ? "noopener noreferrer" : undefined}
+            class:list={[
+              "nav-link text-[var(--color-fg)] no-underline text-[0.95rem] transition-all duration-200 flex items-center gap-2",
+              isActive ? "active" : ""
+            ]}
+            aria-current={isActive ? "page" : undefined}
+          >
+            {link.label}
+            {link.external && (
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-50">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                <polyline points="15 3 21 3 21 9"/>
+                <line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+            )}
+          </a>
+        );
+      })}
+      <ThemeToggle />
+    </div>
+
+    <!-- Mobile: Theme Toggle + Hamburger -->
+    <div class="flex md:hidden items-center gap-2">
+      <ThemeToggle />
+      <button
+        id="mobile-menu-btn"
+        type="button"
+        class="p-2 text-[var(--color-fg)] hover:text-[var(--color-muted)] transition-colors duration-200"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+      >
+        <!-- Hamburger icon -->
+        <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="4" y1="6" x2="20" y2="6"/>
+          <line x1="4" y1="12" x2="20" y2="12"/>
+          <line x1="4" y1="18" x2="20" y2="18"/>
+        </svg>
+        <!-- Close icon -->
+        <svg id="close-icon" class="hidden" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden border-t border-[var(--color-border)] mt-4 mobile-menu-open">
+    <div class="px-4 py-4 flex flex-col gap-4">
+      {navLinks.map((link) => {
+        const isActive = currentPath === link.href;
+        return (
+          <a 
+            href={link.href} 
+            target={link.external ? "_blank" : undefined}
+            rel={link.external ? "noopener noreferrer" : undefined}
+            class:list={[
+              "nav-link text-[var(--color-fg)] no-underline text-[0.95rem] transition-all duration-200 flex items-center justify-between py-2 border-b border-[var(--color-border)]",
+              isActive ? "active" : ""
+            ]}
+            aria-current={isActive ? "page" : undefined}
+          >
+            <span>{link.label}</span>
+            {link.external ? (
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-50">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                <polyline points="15 3 21 3 21 9"/>
+                <line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+            ) : (
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-50">
+                <path d="M5 12h14"/>
+                <path d="m12 5 7 7-7 7"/>
+              </svg>
+            )}
+          </a>
+        );
+      })}
+    </div>
+  </div>
+</nav>
+
+<script>
+  function initMobileMenu() {
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+    const closeIcon = document.getElementById('close-icon');
+
+    menuBtn?.addEventListener('click', () => {
+      const isOpen = mobileMenu?.classList.toggle('hidden');
+      menuIcon?.classList.toggle('hidden');
+      closeIcon?.classList.toggle('hidden');
+      menuBtn?.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+    });
+
+    // Close menu when clicking a link
+    mobileMenu?.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu?.classList.add('hidden');
+        menuIcon?.classList.remove('hidden');
+        closeIcon?.classList.add('hidden');
+        menuBtn?.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  // Run on initial load
+  initMobileMenu();
+
+  // Re-run after view transitions
+  document.addEventListener('astro:after-swap', initMobileMenu);
+</script>
