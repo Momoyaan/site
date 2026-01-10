@@ -6,6 +6,8 @@ import ProjectCard from "../components/ProjectCard.astro";
 import universImage from "../assets/univers.png";
 import subsonicImage from "../assets/subsonic.png";
 import nixosImage from "../assets/nixos.png";
+import tuiImage from "../assets/tui.png";
+import machinereportImage from "../assets/machinreport.png";
 
 const projects = [
   {
@@ -23,6 +25,22 @@ const projects = [
     image: subsonicImage,
     imageAlt: "Subsonic Music Server",
     tags: ["Rust", "Axum", "SQLite", "Typescript", "React", "TanStack Router"],
+  },
+  {
+    title: "Subsonic TUI",
+    description: "A terminal-based music player client for Subsonic and OpenSubsonic compatible servers. Built with Rust and Ratatui, featuring album browsing, queue management, and keyboard-driven navigation. Designed for users who prefer a lightweight, terminal-native music experience.",
+    href: "https://github.com/imaviso/subsonic-tui",
+    image: tuiImage,
+    imageAlt: "Subsonic TUI",
+    tags: ["Rust", "Ratatui", "TUI", "Subsonic"],
+  },
+  {
+    title: "MachineReport",
+    description: "A minimal system information display tool for Linux, showing OS details, hardware specs, resource usage, and system metrics in a clean terminal interface. Built with Rust and Ratatui for a fast, visually appealing system overview.",
+    href: "https://github.com/imaviso/machinereport",
+    image: machinereportImage,
+    imageAlt: "MachineReport System Info",
+    tags: ["Rust", "Ratatui", "TUI", "Linux"],
   },
   {
     title: "NixOS Configuration",
